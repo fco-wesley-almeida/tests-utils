@@ -3,20 +3,23 @@
 $postmanName = 'api_robo_sou';
 $postmanId = "167d7612-92fa-49a9-8533-ac897b175e27";
 $postmanSchema = "https://schema.getpostman.com/json/collection/v2.1.0/collection.json";
-$url = 'http://5.183.11.4:82';
-$swaggerJson = json_decode(file_get_contents('swagger.json'), true);
+$url = '{{protocol}}://{{host}}';
+$swaggerJson = json_decode(file_get_contents('http://5.183.11.4:82/swagger/v1/swagger.json'), true);
 
 $postmanGetModel = [
     'name' => 'get ',
     'protocolProfileBehavior' => ['strictSSL' => false],
     'request' => [
         'method' => 'GET',
-        'header' => [],
+        'header' => [[
+            "key" => "Authorization",
+            "value" => "Bearer {{token}}",
+            "type" => "text"
+        ]],
         'url' => [
             'raw' => $url,
-            'protocol' => 'http',
-            'host' => ['5','183', '11', '4'],
-            'port' => '82',
+            'protocol' => '{{protocol}}',
+            'host' => ['{{host}}'],
             'path' => []
         ]
     ],
@@ -29,7 +32,11 @@ $postmanPostModel = [
     'protocolProfileBehavior' => ['strictSSL' => false],
     'request' => [
         'method' => 'POST',
-        'header' => [],
+        'header' => [[
+            "key" => "Authorization",
+            "value" => "Bearer {{token}}",
+            "type" => "text"
+        ]],
         'body' => [
             'mode' => 'raw',
             'raw' => "{}",
@@ -39,9 +46,8 @@ $postmanPostModel = [
         ],
         'url' => [
             'raw' => '',
-            'protocol' => 'http',
-            'host' => ['5', '183', '11', '4'],
-            'port' => '82',
+            'protocol' => '{{protocol}}',
+            'host' => ['{{host}}'],
             'path' => []
         ]
     ]
